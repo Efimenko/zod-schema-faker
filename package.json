@@ -51,6 +51,7 @@
     "build": "tsc && vite build",
     "format": "prettier --write .",
     "pack": "rm -f *.tgz && npm pack && mv zod-schema-faker* zod-schema-faker.tgz",
+    "prepare": "npm run build",
     "test": "vitest run"
   },
   "dependencies": {
