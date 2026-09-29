@@ -32,6 +32,10 @@ export function fakeStringFormat<T extends core.$ZodStringFormat>(
       data = getFaker().internet.ipv6() + '/' + getFaker().number.int({ min: 0, max: 128 })
       break
     }
+    case 'credit_card': {
+      data = getFaker().finance.creditCardNumber()
+      break
+    }
     case 'cuid': {
       data = randexp(core.regexes.cuid)
       break
@@ -103,6 +107,10 @@ export function fakeStringFormat<T extends core.$ZodStringFormat>(
     }
     case 'guid': {
       data = randexp(core.regexes.guid)
+      break
+    }
+    case 'iban': {
+      data = getFaker().finance.iban()
       break
     }
     case 'ipv4': {
@@ -211,12 +219,14 @@ export function fakeStringFormat<T extends core.$ZodStringFormat>(
     case 'url': {
       const protocol = (schema as core.$ZodURL)._zod.def.protocol
       const hostname = (schema as core.$ZodURL)._zod.def.hostname
+      const fakeHostname = (hostname: RegExp) =>
+        hostname.source === core.regexes.domain.source ? getFaker().internet.domainName() : randexp(hostname)
       if (protocol && hostname) {
-        data = randexp(protocol) + '://' + randexp(hostname)
+        data = randexp(protocol) + '://' + fakeHostname(hostname)
       } else if (protocol) {
         data = randexp(protocol) + '://' + getFaker().internet.domainName()
       } else if (hostname) {
-        data = 'https://' + randexp(hostname)
+        data = 'https://' + fakeHostname(hostname)
       } else {
         data = getFaker().internet.url()
       }

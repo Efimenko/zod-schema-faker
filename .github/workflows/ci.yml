@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7.0.1
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version-file: '.nvmrc'
 
@@ -25,9 +25,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7.0.1
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version-file: '.nvmrc'
 
@@ -42,6 +42,22 @@ jobs:
           cd examples/v3 && npm ci && npm i ../../zod-schema-faker.tgz && npm run build && cd -
           cd examples/v4 && npm ci && npm i ../../zod-schema-faker.tgz && npm run build && cd -
 
+  test-zod-v4-4-1-12:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: '.nvmrc'
+
+      - run: npm ci
+
+      - run: npm i --no-save zod@4.1.12
+
+      - run: npx vitest run tests/v4
+
   build:
     runs-on: ubuntu-latest
 
@@ -50,9 +66,9 @@ jobs:
       - test
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7.0.1
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version-file: '.nvmrc'
 
@@ -60,7 +76,7 @@ jobs:
 
       - run: npm run build
 
-      - uses: JS-DevTools/npm-publish@v4
+      - uses: JS-DevTools/npm-publish@v4.1.5
         id: publish
         if: ${{ github.ref == 'refs/heads/main' }}
         with:

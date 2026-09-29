@@ -1,6 +1,6 @@
 {
   "name": "zod-schema-faker",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "Generates mock data from zod schema. Powered by @faker-js/faker and randexp.js",
   "keywords": [
     "zod",
@@ -54,28 +54,31 @@
     "prepare": "npm run build",
     "test": "vitest run"
   },
-  "dependencies": {
-    "@faker-js/faker": "10.1.0",
-    "randexp": "0.5.3"
-  },
   "devDependencies": {
-    "@types/node": "24.11.0",
-    "@vitest/coverage-v8": "4.0.18",
-    "@vitest/ui": "^4.0.18",
-    "prettier": "3.8.1",
+    "@faker-js/faker": "10.6.0",
+    "@types/node": "24.19.0",
+    "@vitest/coverage-v8": "5.0.2",
+    "@vitest/ui": "5.0.2",
+    "prettier": "3.9.9",
     "prettier-plugin-organize-imports": "4.3.0",
-    "prettier-plugin-packagejson": "3.0.1",
+    "prettier-plugin-packagejson": "3.0.2",
     "prettier-plugin-sort-json": "4.2.0",
+    "randexp": "0.5.3",
     "rimraf": "6.1.3",
     "ts-expect": "1.3.0",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
-    "vite": "7.3.1",
+    "vite": "8.3.1",
     "vite-plugin-dts": "4.5.4",
-    "vitest": "4.0.18",
-    "zod": "4.1.12"
+    "vitest": "5.0.2",
+    "zod": "4.6.5"
   },
   "peerDependencies": {
+    "@faker-js/faker": "^10.0.0",
+    "randexp": "^0.5.3",
     "zod": "^3.25.0 || ^4.0.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
