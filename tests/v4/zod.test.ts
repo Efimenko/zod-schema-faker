@@ -83,6 +83,8 @@ const validSuits: { description?: string; schema: z.ZodType; only?: boolean; asy
   { schema: z.date() },
   { description: 'min', schema: z.date().min(new Date('3000-01-01')) },
   { description: 'max', schema: z.date().max(new Date('1000-01-01')) },
+  { description: 'gt', schema: z.date().check(z.gt(new Date('3000-01-01'))) },
+  { description: 'lt', schema: z.date().check(z.lt(new Date('1000-01-01'))) },
   {
     description: 'multiple min',
     schema: z
@@ -558,6 +560,7 @@ const validSuits: { description?: string; schema: z.ZodType; only?: boolean; asy
   { description: 'base64url', schema: z.base64url() },
   { description: 'cidrv4', schema: z.cidrv4() },
   { description: 'cidrv6', schema: z.cidrv6() },
+  ...('creditCard' in z ? [{ description: 'credit card', schema: z.creditCard() }] : []),
   { description: 'cuid', schema: z.cuid() },
   { description: 'cuid2', schema: z.cuid2() },
   { description: 'e164', schema: z.e164() },
@@ -570,6 +573,7 @@ const validSuits: { description?: string; schema: z.ZodType; only?: boolean; asy
   { description: 'email unicode', schema: z.email({ pattern: z.regexes.unicodeEmail }) },
   { description: 'emoji', schema: z.emoji() },
   { description: 'guid', schema: z.guid() },
+  ...('iban' in z ? [{ description: 'iban', schema: z.iban() }] : []),
   { description: 'hash md5', schema: z.hash('md5') },
   { description: 'hash md5 hex', schema: z.hash('md5', { enc: 'hex' }) },
   { description: 'hash md5 base64', schema: z.hash('md5', { enc: 'base64' }) },
